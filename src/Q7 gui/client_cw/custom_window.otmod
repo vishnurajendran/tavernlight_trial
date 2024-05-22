@@ -1,0 +1,8 @@
+Module
+  name: custom_window
+  description: Opens a custom window
+  author: vishnu rajendran
+  scripts: [ custom_window ]
+  @onLoad: init()
+  @onUnload: terminate()
+  @onGameEnd: terminate()
