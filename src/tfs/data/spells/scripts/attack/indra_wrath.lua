@@ -2,6 +2,10 @@
 -- This scripts contains the logic of Indira's Wrath spell
 -- What we want: Have a swarm of tornados surround the player
 
+-- Idea : Spawn a bunch of tornadoes around th player, and let them have the ability
+-- to spawn more tornadoes recursivly,This appeared to give good results, not exactly like
+-- what the demo needed tho :/.
+
 -- delay between child spawns
 local EACH_SPAWN_DELAY = 100
 local MAGIC_EFFECT = CONST_ME_ICETORNADO
@@ -18,7 +22,6 @@ function getPointInCircle(center, radius, angleDegrees)
 end
 
 -- Invoked when the item is used
--- Dev Note: This appeared to give good results, not exactly like what the demo needed tho :/.
 function onCastSpell(cid, variant)
     local player = Player(cid)
     if not player then
@@ -26,7 +29,7 @@ function onCastSpell(cid, variant)
     end
 
 	player:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, "Indira's Wrath is unleashed")
-    -- spawn 10 initially,
+    -- spawn 10 initially, this looked like a good number
     local intialSpawns = 10
     local maxRecursions = 10
     for i = 0, intialSpawns - 1 do
@@ -47,7 +50,7 @@ function doRandomTornadoSpawn(playerId, maxRecursionDepth, angle, radius)
     if maxRecursionDepth <= 0 then
         return
     end
-    -- random position for children
+    -- random radius for new position for children
     newRad = clamp(radius-1, 1.5,3)
     --recursivly call the function with delay
     -- we randomly pick a number between 0 and 359 as our next angle
