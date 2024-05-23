@@ -1,0 +1,13 @@
+Window
+  name: "CustomWindow"
+  size: 400 300
+  center: true
+
+  Button
+    id: "jmpBttn"
+    text: "Jump!"
+    anchors.top: parent.top
+    anchors.left: parent.left
+    position: 200 150
+    width: 50
+    @onClick: onButtonClick()
