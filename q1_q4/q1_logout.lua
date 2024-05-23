@@ -1,14 +1,14 @@
 local STORAGE_VAL_KEY = 1000
 
-local function releaseStorage(player)
+local function releaseStorage(player, key)
     if player then
-        player:setStorageValue(1000, -1)
+        player:setStorageValue(key, -1)
     end
 end
     
 function onLogout(player)
-    if player:getStorageValue(1000) == 1 then
-        releaseStorage(player)
+    if player:getStorageValue(STORAGE_VAL_KEY) == 1 then
+        releaseStorage(player, STORAGE_VAL_KEY)
     end
     return true
 end
